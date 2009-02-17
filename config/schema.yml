@@ -1,0 +1,38 @@
+propel:
+  _attributes:
+    package: lib.model
+    defaultIdMethod: native
+  gasto_fijo_mensual:
+    _attributes: { phpName: GastoFijoMensual }
+    id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
+    nombre: { type: VARCHAR, size: '100', required: true }
+    notas: { type: LONGVARCHAR, required: false }
+    created_at: { type: TIMESTAMP, required: false }
+    recargo: { type: FLOAT, required: false }
+    id_gasto: { type: INTEGER, size: '11', required: true, foreignTable: gastos, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT, index: 'true' }
+  gasto_tarjeta:
+    _attributes: { phpName: GastoTarjeta }
+    id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
+    id_tarjeta: { type: TINYINT, size: '4', required: true, foreignTable: tipo_tarjeta, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    cuotas: { type: INTEGER, size: '11', required: true }
+    cuotas_pagadas: { type: INTEGER, size: '11', required: false }
+    created_at: { type: TIMESTAMP, required: false }
+    id_gasto: { type: INTEGER, size: '11', required: true, foreignTable: gastos, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT, index: 'true' }
+    _indexes: { id_tarjeta: [id_tarjeta] }
+  gastos:
+    _attributes: { phpName: Gastos }
+    id: { type: INTEGER, size: '11', primaryKey: true, autoIncrement: true, required: true }
+    nombre: { type: VARCHAR, size: '100', required: true }
+    descripcion: { type: LONGVARCHAR, required: false }
+    tipo: { type: TINYINT, size: '4', required: true, foreignTable: tipo_gasto, foreignReference: id, onDelete: RESTRICT, onUpdate: RESTRICT }
+    created_at: { type: TIMESTAMP, required: false }
+    importe: { type: FLOAT, required: false }
+    _indexes: { tipo: [tipo] }
+  tipo_gasto:
+    _attributes: { phpName: TipoGasto }
+    id: { type: TINYINT, size: '2', primaryKey: true, autoIncrement: true, required: true }
+    descripcion: { type: VARCHAR, size: '100', required: true }
+  tipo_tarjeta:
+    _attributes: { phpName: TipoTarjeta }
+    id: { type: TINYINT, size: '4', primaryKey: true, autoIncrement: true, required: true }
+    nombre: { type: VARCHAR, size: '100', required: true }

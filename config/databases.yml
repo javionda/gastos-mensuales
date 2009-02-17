@@ -13,9 +13,9 @@ all:
     class:        sfPropelDatabase
     param:
       classname:  PropelPDO
-      dsn:        mysql:dbname=gastos-mensuales;host=localhost
+      dsn:        mysql:dbname=gastos_mensuales;host=localhost
       username:   root
-      password:   
+      password:   echesortufc
       encoding:   utf8
       persistent: true
       pooling:    true
