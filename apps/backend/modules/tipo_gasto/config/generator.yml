@@ -1,0 +1,32 @@
+generator:
+  class: sfPropelGenerator
+  param:
+    model_class:           TipoGasto
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          tipo_gasto
+    with_propel_route:     1
+
+    config:
+      actions: ~
+      fields:
+      list:
+        title: "Tipos de gastos"
+        display: [=descripcion]
+        layout: stacked
+        params:  |
+          <em>%%=descripcion%%</em>
+        actions:
+          _create:
+            action:  new    
+      filter:  ~
+      form:    ~
+      edit:
+        title: "Editar Tipo de gasto"
+      new:
+        title: "Nuevo Tipo de gasto"
+      
+          
